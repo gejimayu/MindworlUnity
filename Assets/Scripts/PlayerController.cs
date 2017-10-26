@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.transform.tag == "Enemy") {
 			Instantiate (deathParticles, transform.position, Quaternion.identity);
 			transform.position = spawn;
+		} else if (other.transform.tag == "Goal") {
 		}
 	}
 }
