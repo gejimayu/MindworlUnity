@@ -4,25 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public float speed;
-	private Rigidbody rb;
+	public float moveSpeed;
+	private float maxSpeed = 1.5f;
+	private Vector3 input;
+	public Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 	}
-
-	void FixedUpdate() {
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
-
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f , moveVertical);
-
-		rb.AddForce (movement * speed);
-	}
-
-	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag ("Pick Up"))
-			other.gameObject.SetActive (false);
+	
+	// Update is called once per frame
+	void FixedUpdate () {
+		input = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
+			print (input);
+		rb.AddForce (input * moveSpeed);
 	}
 }
