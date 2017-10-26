@@ -16,11 +16,11 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (currentPoint >= patrolPoints.Length) {
-			currentPoint = 0;
-		}
 		if (transform.position == patrolPoints [currentPoint].position) {
 			currentPoint++;
+			if (currentPoint == patrolPoints.Length) {
+				currentPoint = 0;
+			}
 		}
 		transform.position = Vector3.MoveTowards (transform.position, patrolPoints [currentPoint].position,
 			moveSpeed * Time.deltaTime);
