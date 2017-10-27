@@ -164,7 +164,29 @@ public class CanvasController : MonoBehaviour {
 		}
 	}
 
-	
+	void userinfoCall(string access_token)
+	{
+		Debug.Log("Making API Call to Userinfo...");
+
+		// builds the  request
+		string userinfoRequestURI = "https://www.googleapis.com/oauth2/v3/userinfo";
+
+		// sends the request
+		HttpWebRequest userinfoRequest = (HttpWebRequest)WebRequest.Create(userinfoRequestURI);
+		userinfoRequest.Method = "GET";
+		userinfoRequest.Headers.Add(string.Format("Authorization: Bearer {0}", access_token));
+		userinfoRequest.ContentType = "application/x-www-form-urlencoded";
+		userinfoRequest.Accept = "Accept=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+
+		// gets the response
+		WebResponse userinfoResponse = userinfoRequest.GetResponse();
+		using (StreamReader userinfoResponseReader = new StreamReader(userinfoResponse.GetResponseStream()))
+		{
+			// reads response body
+			string userinfoResponseText = userinfoResponseReader.ReadToEnd();
+			Debug.Log(userinfoResponseText);
+		}
+	}
 
 	// ref http://stackoverflow.com/a/3978040
 	public static int GetRandomUnusedPort()
