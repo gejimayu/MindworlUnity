@@ -34,7 +34,7 @@ static function Object2Terrain () {
 		addedMesh = true;
 	}
  
-	Undo.RegisterUndo (terrain, "Object to Terrain");
+	Undo.RegisterCompleteObjectUndo (terrain, "Object to Terrain");
  
 	var resolutionX = terrain.heightmapWidth;
 	var resolutionZ = terrain.heightmapHeight;
