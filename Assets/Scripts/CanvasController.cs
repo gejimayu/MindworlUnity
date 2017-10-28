@@ -46,7 +46,7 @@ public class CanvasController : MonoBehaviour {
 		http.Start();
 
 		// Creates the OAuth 2.0 authorization request.
-		string authorizationRequest = string.Format("{0}?response_type=code&scope=openid%20profile&redirect_uri={1}&client_id={2}&state={3}&code_challenge={4}&code_challenge_method={5}",
+		string authorizationRequest = string.Format("{0}?response_type=code&scope=email%20profile&redirect_uri={1}&client_id={2}&state={3}&code_challenge={4}&code_challenge_method={5}",
 			authorizationEndpoint,
 			System.Uri.EscapeDataString(redirectURI),
 			clientID,
