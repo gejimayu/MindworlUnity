@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+	void Update () {
+		transform.Rotate (new Vector3 (10, 30, 45) * Time.deltaTime);
+	}
+
 	void FixedUpdate () {
 		input = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
 		rb.AddForce (input * moveSpeed);
