@@ -32,8 +32,9 @@ public class PlayerController : MonoBehaviour {
 			Instantiate (deathParticles, transform.position, Quaternion.identity);
 			lives = lives - 1;
 
-			if (lives == 0) 
+			if (lives == 0) {
 				notification.text = "You Lose !";
+			}
 			
 			transform.position = spawn;
 			lifebar.text = "Lives : " + lives.ToString ();

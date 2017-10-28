@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657862, g: 0.49641275, b: 0.5748155, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641275, b: 0.5748151, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -862,11 +862,11 @@ Prefab:
     - target: {fileID: 114043362105009084, guid: 3077595389149a448ab8ef6db0ab7e8a,
         type: 2}
       propertyPath: moveSpeed
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1334225058500514, guid: 3077595389149a448ab8ef6db0ab7e8a, type: 2}
       propertyPath: m_Name
-      value: Enemy3 (1)
+      value: Enemy4
       objectReference: {fileID: 0}
     - target: {fileID: 114043362105009084, guid: 3077595389149a448ab8ef6db0ab7e8a,
         type: 2}
@@ -2075,7 +2075,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1493426459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 423, y: 136.5, z: 0}
+  m_LocalPosition: {x: 375.5, y: 171.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1615530792}
@@ -2173,7 +2173,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1615530791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -310, y: 83.5, z: 0}
+  m_LocalPosition: {x: -262.5, y: 118.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 64725139}
@@ -2349,7 +2349,7 @@ Prefab:
     - target: {fileID: 114043362105009084, guid: 3077595389149a448ab8ef6db0ab7e8a,
         type: 2}
       propertyPath: moveSpeed
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1334225058500514, guid: 3077595389149a448ab8ef6db0ab7e8a, type: 2}
       propertyPath: m_Name
@@ -2629,7 +2629,7 @@ Prefab:
     - target: {fileID: 114043362105009084, guid: 3077595389149a448ab8ef6db0ab7e8a,
         type: 2}
       propertyPath: moveSpeed
-      value: 40
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114043362105009084, guid: 3077595389149a448ab8ef6db0ab7e8a,
         type: 2}
@@ -2936,7 +2936,7 @@ Prefab:
     - target: {fileID: 114043362105009084, guid: 3077595389149a448ab8ef6db0ab7e8a,
         type: 2}
       propertyPath: moveSpeed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114043362105009084, guid: 3077595389149a448ab8ef6db0ab7e8a,
         type: 2}
