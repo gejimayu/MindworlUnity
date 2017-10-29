@@ -46,7 +46,7 @@ public class CanvasController : MonoBehaviour {
 		http.Start();
 
 		// Creates the OAuth 2.0 authorization request.
-		string authorizationRequest = string.Format("{0}?response_type=code&scope=email%20profile&redirect_uri={1}&client_id={2}&state={3}&code_challenge={4}&code_challenge_method={5}",
+		string authorizationRequest = string.Format("{0}?response_type=code&scope=email&redirect_uri={1}&client_id={2}&state={3}&code_challenge={4}&code_challenge_method={5}",
 			authorizationEndpoint,
 			System.Uri.EscapeDataString(redirectURI),
 			clientID,
@@ -184,7 +184,9 @@ public class CanvasController : MonoBehaviour {
 		{
 			// reads response body
 			string userinfoResponseText = userinfoResponseReader.ReadToEnd();
-			Debug.Log(userinfoResponseText);
+			Profile deserializedResponse = JsonUtility.FromJson<Profile>(userinfoResponseText);
+			string userEmail = deserializedResponse.email;
+			Debug.Log (userEmail);
 		}
 	}
 
@@ -260,4 +262,16 @@ public class Page
 	public int expires_in;
 	public string token_type;
 	public string refresh_token;
+}
+
+[Serializable]
+public class Profile
+{
+	public string sub;
+	public string name;
+	public string given_name;
+	public string family_name;
+	public string picture;
+	public string email;
+	public bool email_verified;
 }
