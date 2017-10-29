@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -24,6 +25,8 @@ public class CanvasController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		PlayerPrefs.DeleteAll();
+
 		Button temp = bt.GetComponent<Button> ();
 		temp.onClick.AddListener (loginstart);
 	}
@@ -186,8 +189,11 @@ public class CanvasController : MonoBehaviour {
 			string userinfoResponseText = userinfoResponseReader.ReadToEnd();
 			Profile deserializedResponse = JsonUtility.FromJson<Profile>(userinfoResponseText);
 			string userEmail = deserializedResponse.email;
-			Debug.Log (userEmail);
+			//Debug.Log (userEmail);
+			PlayerPrefs.SetString ("Email User", userEmail);
 		}
+		SceneManager.LoadScene ("MainScene", LoadSceneMode.Single);
+
 	}
 
 	// ref http://stackoverflow.com/a/3978040

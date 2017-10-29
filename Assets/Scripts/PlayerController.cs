@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -38,12 +39,24 @@ public class PlayerController : MonoBehaviour {
 
 			if (lives == 0) {
 				notification.text = "You Lose !";
+
+				SceneManager.LoadScene ("MainScene", LoadSceneMode.Single);
 			}
 			
 			transform.position = spawn;
 			lifebar.text = "Lives : " + lives.ToString ();
 		} else if (other.transform.tag == "Goal") {
 			notification.text = "You Win !";
+
+			if (PlayerPrefs.GetInt ("InMinigame") == 1) {
+				PlayerPrefs.SetInt ("IsWin1", 1);
+
+				Debug.Log (PlayerPrefs.GetInt ("IsWin1"));
+			} else if (PlayerPrefs.GetInt("InMinigame") == 2) {
+				PlayerPrefs.SetInt ("IsWin2", 1);
+			}
+
+			SceneManager.LoadScene ("MainScene", LoadSceneMode.Single);
 		}
 	}
 }

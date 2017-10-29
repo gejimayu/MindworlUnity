@@ -14,6 +14,7 @@ public class DayNightController : MonoBehaviour {
 
 	void Start() {
 		sunInitialIntensity = sun.intensity;
+		Debug.Log(PlayerPrefs.GetString("Email User"));
 	}
 
 	void Update() {
