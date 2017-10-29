@@ -4,9 +4,11 @@
 /[Bb]uild/
 /[Bb]uilds/
 /Assets/AssetStoreTools*
+/Assets/SampleScenes*
 /Assets/NatureStarterKit2*
 /Assets/Standard Assets*
-/Assets/SampleScenes*
+/Assets/Mega Fantasy Props Pack*
+/Assets/Laterns and candles*
 
 # Visual Studio 2015 cache directory
 /.vs/
