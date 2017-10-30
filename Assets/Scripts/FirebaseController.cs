@@ -24,9 +24,4 @@ public class FirebaseController : MonoBehaviour {
 			Debug.Log (imagesNode[key]);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

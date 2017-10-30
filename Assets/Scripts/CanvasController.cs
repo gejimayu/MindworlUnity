@@ -148,6 +148,7 @@ public class CanvasController : MonoBehaviour {
 		}
 		catch (WebException ex)
 		{
+			Debug.Log ("asu gagal");
 			if (ex.Status == WebExceptionStatus.ProtocolError)
 			{
 				var response = ex.Response as HttpWebResponse;
