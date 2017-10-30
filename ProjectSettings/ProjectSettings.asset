@@ -611,8 +611,8 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 3541472b-19ea-480d-9e04-1d86df2fb881
-  projectName: Mindworld
-  organizationId: albert_d
+  projectName: tubes
+  organizationId: gianffh
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

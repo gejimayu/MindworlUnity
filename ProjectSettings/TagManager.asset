@@ -7,6 +7,18 @@ TagManager:
   - Pick Up
   - Enemy
   - Goal
+  - Books2
+  - Books1
+  - book11
+  - book12
+  - book13
+  - book14
+  - book15
+  - book21
+  - book22
+  - book23
+  - book24
+  - book25
   layers:
   - Default
   - TransparentFX
