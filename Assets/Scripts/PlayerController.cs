@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
+		Debug.Log ("oeoeoeoe");
+		if(PlayerPrefs.HasKey("InMinigame")){
+			Debug.Log("ada");
+			Debug.Log(PlayerPrefs.GetInt("InMinigame"));
+		}
 		if (other.transform.tag == "Enemy") {
 			Instantiate (deathParticles, transform.position, Quaternion.identity);
 			lives = lives - 1;
@@ -50,10 +55,12 @@ public class PlayerController : MonoBehaviour {
 
 			if (PlayerPrefs.GetInt ("InMinigame") == 1) {
 				PlayerPrefs.SetInt ("IsWin1", 1);
-
+				Debug.Log ("IsWin1");
 				Debug.Log (PlayerPrefs.GetInt ("IsWin1"));
 			} else if (PlayerPrefs.GetInt("InMinigame") == 2) {
 				PlayerPrefs.SetInt ("IsWin2", 1);
+				Debug.Log ("IsWin2");
+				Debug.Log (PlayerPrefs.GetInt ("IsWin2"));
 			}
 
 			SceneManager.LoadScene ("MainScene", LoadSceneMode.Single);
