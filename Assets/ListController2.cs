@@ -28,16 +28,19 @@ public class ListController2 : MonoBehaviour {
 		imagesNode = (JSONObject) JSON.Parse (www.text);
 
 		foreach (string key in imagesNode.Keys) {
-			Debug.Log (imagesNode[key]["name"]);
-			WWW temp = new WWW (imagesNode [key] ["url"]);
-			yield return temp;
-			//convert image to sprite
-			Texture2D texture = new Texture2D (temp.texture.width, temp.texture.height, TextureFormat.DXT1, false);
-			temp.LoadImageIntoTexture (texture);
-			Rect rec = new Rect (0, 0, texture.width, texture.height);
-			Sprite spriteToUse = Sprite.Create (texture, rec, new Vector2 (0.5f, 0.5f), 100);
+			Debug.Log (imagesNode[key]["uploaderID"]);
+			Debug.Log (PlayerPrefs.GetString("Email User"));
+			if(imagesNode[key]["uploaderID"].Equals(PlayerPrefs.GetString("Email User"))){
+				WWW temp = new WWW (imagesNode [key] ["url"]);
+				yield return temp;
+				//convert image to sprite
+				Texture2D texture = new Texture2D (temp.texture.width, temp.texture.height, TextureFormat.DXT1, false);
+				temp.LoadImageIntoTexture (texture);
+				Rect rec = new Rect (0, 0, texture.width, texture.height);
+				Sprite spriteToUse = Sprite.Create (texture, rec, new Vector2 (0.5f, 0.5f), 100);
 
-			ItemsImage.Add(new BarangImg(imagesNode[key]["name"], spriteToUse));
+				ItemsImage.Add(new BarangImg(imagesNode[key]["name"], spriteToUse));
+			}
 		}
 
 		foreach(BarangImg temp in ItemsImage) {

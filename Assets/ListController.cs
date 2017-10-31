@@ -21,17 +21,22 @@ public class ListController : MonoBehaviour {
 			//new Barang ("adem.txt", "abc")
 		//};
 
+
 		ItemsText = new ArrayList ();
 		WWW www = new WWW(textsUrl);
 		yield return www;
 
+
 		textsNode = (JSONObject) JSON.Parse (www.text);
 
 		foreach (string key in textsNode.Keys) {
-			Debug.Log (textsNode[key]["title"]);
-			WWW temp = new WWW (textsNode [key] ["url"]);
-			yield return temp;
-			ItemsText.Add(new BarangTxt(textsNode[key]["title"], temp.text));
+			Debug.Log (textsNode[key]["uploaderID"]);
+			Debug.Log (PlayerPrefs.GetString("Email User"));
+			if(textsNode[key]["uploaderID"].Equals(PlayerPrefs.GetString("Email User"))){
+				WWW temp = new WWW (textsNode [key] ["url"]);
+				yield return temp;
+				ItemsText.Add(new BarangTxt(textsNode[key]["title"], temp.text));
+			}
 		}
 
 		foreach(BarangTxt temp in ItemsText) {
