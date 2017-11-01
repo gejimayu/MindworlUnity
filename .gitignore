@@ -10,6 +10,8 @@
 /Assets/Mega Fantasy Props Pack*
 /Assets/Laterns and candles*
 
+!/Assets/Standard Assets/Characters/FirstPersonCharacter/Scripts/FirstPersonController.cs*
+
 # Visual Studio 2015 cache directory
 /.vs/
 
