@@ -7,13 +7,13 @@ using Random = UnityEngine.Random;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
-    [RequireComponent(typeof (CharacterController))]
-    [RequireComponent(typeof (AudioSource))]
+    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
 		
-		public GameObject canvas;
-		public GameObject canvas2;
+        public GameObject canvas;
+        public GameObject canvas2;
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -28,9 +28,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private CurveControlledBob m_HeadBob = new CurveControlledBob();
         [SerializeField] private LerpControlledBob m_JumpBob = new LerpControlledBob();
         [SerializeField] private float m_StepInterval;
-        [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
-        [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
-        [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] private AudioClip[] m_FootstepSounds;
+        // an array of footstep sounds that will be randomly selected from.
+        [SerializeField] private AudioClip m_JumpSound;
+        // the sound played when character leaves the ground.
+        [SerializeField] private AudioClip m_LandSound;
+        // the sound played when character touches back on ground.
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -55,10 +58,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_FovKick.Setup(m_Camera);
             m_HeadBob.Setup(m_Camera, m_StepInterval);
             m_StepCycle = 0f;
-            m_NextStep = m_StepCycle/2f;
+            m_NextStep = m_StepCycle / 2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
-			m_MouseLook.Init(transform , m_Camera.transform);
+            m_MouseLook.Init(transform, m_Camera.transform);
         }
 
 
@@ -87,10 +90,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 
 
-			if (Input.GetKeyDown(KeyCode.Q)) {
-				canvas.SetActive (false);
-				canvas2.SetActive (false);
-			}
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                canvas.SetActive(false);
+                canvas2.SetActive(false);
+            }
         }
 
 
@@ -107,16 +111,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
-            Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
+            Vector3 desiredMove = transform.forward * m_Input.y + transform.right * m_Input.x;
 
             // get a normal for the surface that is being touched to move along it
             RaycastHit hitInfo;
             Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
-                               m_CharacterController.height/2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+                m_CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
-            m_MoveDir.x = desiredMove.x*speed;
-            m_MoveDir.z = desiredMove.z*speed;
+            m_MoveDir.x = desiredMove.x * speed;
+            m_MoveDir.z = desiredMove.z * speed;
 
 
             if (m_CharacterController.isGrounded)
@@ -133,9 +137,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             else
             {
-                m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
+                m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
             }
-            m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+            m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
 
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
@@ -155,8 +159,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
             {
-                m_StepCycle += (m_CharacterController.velocity.magnitude + (speed*(m_IsWalking ? 1f : m_RunstepLenghten)))*
-                             Time.fixedDeltaTime;
+                m_StepCycle += (m_CharacterController.velocity.magnitude + (speed * (m_IsWalking ? 1f : m_RunstepLenghten))) *
+                Time.fixedDeltaTime;
             }
 
             if (!(m_StepCycle > m_NextStep))
@@ -198,7 +202,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Camera.transform.localPosition =
                     m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
-                                      (speed*(m_IsWalking ? 1f : m_RunstepLenghten)));
+                    (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));
                 newCameraPosition = m_Camera.transform.localPosition;
                 newCameraPosition.y = m_Camera.transform.localPosition.y - m_JumpBob.Offset();
             }
@@ -246,7 +250,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
+            m_MouseLook.LookRotation(transform, m_Camera.transform);
         }
 
 
@@ -263,48 +267,74 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 return;
             }
-            body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+            body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
         }
 
-		public void OnTriggerEnter(Collider other)
-		{
-			if (other.gameObject.CompareTag ("book11") || other.gameObject.CompareTag ("book12") || other.gameObject.CompareTag ("book13") || other.gameObject.CompareTag ("book14") || other.gameObject.CompareTag ("book15")) {
-				if (PlayerPrefs.HasKey("IsWin1") && PlayerPrefs.GetInt("IsWin1") == 1) {
-					if (other.gameObject.CompareTag ("book11")) {
-						canvas.SetActive (true);
-					} else if (other.gameObject.CompareTag ("book12")) {
-						canvas.SetActive (true);
-					} else if (other.gameObject.CompareTag ("book13")) {
-						canvas.SetActive (true);
-					} else if (other.gameObject.CompareTag ("book14")) {
-						canvas.SetActive (true);
-					} else if (other.gameObject.CompareTag ("book15")) {
-						canvas.SetActive (true);
-					}
-				} else {
-					PlayerPrefs.SetInt ("InMinigame", 1);
-					SceneManager.LoadScene ("BallGame");
-				}
-			}
-			else if(other.gameObject.CompareTag("book21")||other.gameObject.CompareTag ("book22")||other.gameObject.CompareTag ("book23")||other.gameObject.CompareTag ("book24")||other.gameObject.CompareTag ("book25")) {
-				if (PlayerPrefs.HasKey("IsWin2") && PlayerPrefs.GetInt("IsWin2") == 1) {
-					if (other.gameObject.CompareTag ("book21")) {
-						canvas2.SetActive (true);
-					} else if (other.gameObject.CompareTag ("book22")) {
-						canvas2.SetActive (true);
-					} else if (other.gameObject.CompareTag ("book23")) {
-						canvas2.SetActive (true);
-					} else if (other.gameObject.CompareTag ("book24")) {
-						canvas2.SetActive (true);
-					} else if (other.gameObject.CompareTag ("book25")) {
-						canvas2.SetActive (true);
-					}
-				} else {
-					PlayerPrefs.SetInt ("InMinigame", 2);
-					SceneManager.LoadScene ("LabyrinthGame");
-				}
-			}
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("book11") || other.gameObject.CompareTag("book12") || other.gameObject.CompareTag("book13") || other.gameObject.CompareTag("book14") || other.gameObject.CompareTag("book15"))
+            {
+                if (PlayerPrefs.HasKey("IsWin1") && PlayerPrefs.GetInt("IsWin1") == 1)
+                {
+                    if (other.gameObject.CompareTag("book11"))
+                    {
+                        canvas.SetActive(true);
+                    }
+                    else if (other.gameObject.CompareTag("book12"))
+                    {
+                        canvas.SetActive(true);
+                    }
+                    else if (other.gameObject.CompareTag("book13"))
+                    {
+                        canvas.SetActive(true);
+                    }
+                    else if (other.gameObject.CompareTag("book14"))
+                    {
+                        canvas.SetActive(true);
+                    }
+                    else if (other.gameObject.CompareTag("book15"))
+                    {
+                        canvas.SetActive(true);
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("InMinigame", 1);
+                    SceneManager.LoadScene("BallGame");
+                }
+            }
+            else if (other.gameObject.CompareTag("book21") || other.gameObject.CompareTag("book22") || other.gameObject.CompareTag("book23") || other.gameObject.CompareTag("book24") || other.gameObject.CompareTag("book25"))
+            {
+                if (PlayerPrefs.HasKey("IsWin2") && PlayerPrefs.GetInt("IsWin2") == 1)
+                {
+                    if (other.gameObject.CompareTag("book21"))
+                    {
+                        canvas2.SetActive(true);
+                    }
+                    else if (other.gameObject.CompareTag("book22"))
+                    {
+                        canvas2.SetActive(true);
+                    }
+                    else if (other.gameObject.CompareTag("book23"))
+                    {
+                        canvas2.SetActive(true);
+                    }
+                    else if (other.gameObject.CompareTag("book24"))
+                    {
+                        canvas2.SetActive(true);
+                    }
+                    else if (other.gameObject.CompareTag("book25"))
+                    {
+                        canvas2.SetActive(true);
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("InMinigame", 2);
+                    SceneManager.LoadScene("LabyrinthGame");
+                }
+            }
 
-		}
+        }
     }
 }

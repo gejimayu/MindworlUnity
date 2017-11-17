@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ListItemController : MonoBehaviour {
+public class ListItemController : MonoBehaviour
+{
 
-	public Text content;
-	public Text fname;
+    public Text content;
+    public Text fname;
 }
