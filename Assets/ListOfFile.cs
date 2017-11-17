@@ -25,8 +25,6 @@ public class ListOfFile : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        itemList.Add(new Item("cacad"));
-
         RefreshDisplay();
     }
 

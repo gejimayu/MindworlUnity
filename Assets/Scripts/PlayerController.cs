@@ -38,10 +38,8 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("oeoeoeoe");
         if (PlayerPrefs.HasKey("InMinigame"))
         {
-            Debug.Log("ada");
             Debug.Log(PlayerPrefs.GetInt("InMinigame"));
         }
         if (other.transform.tag == "Enemy")

@@ -17,14 +17,12 @@ public class SimpleObjectPool : MonoBehaviour
         // if there is an inactive instance of the prefab ready to return, return that
         if (inactiveInstances.Count > 0)
         {
-            Debug.Log("asd");
             // remove the instance from the collection of inactive instances
             spawnedGameObject = inactiveInstances.Pop();
         }
 		// otherwise, create a new instance
 		else
         {
-            Debug.Log("asd2");
             spawnedGameObject = (GameObject)GameObject.Instantiate(prefab);
 
             // add the PooledObject component to the prefab so we know it came from this pool

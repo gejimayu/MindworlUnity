@@ -32,8 +32,8 @@ public class ListController2 : MonoBehaviour
         foreach (string key in imagesNode.Keys)
         {
             Debug.Log(imagesNode[key]["uploaderID"]);
-            Debug.Log(PlayerPrefs.GetString("Email User"));
-            if (imagesNode[key]["uploaderID"].Equals(PlayerPrefs.GetString("Email User")))
+            Debug.Log(PlayerPrefs.GetString("UserEmail"));
+            if (imagesNode[key]["uploaderID"].Equals(PlayerPrefs.GetString("UserEmail")))
             {
                 WWW temp = new WWW(imagesNode[key]["url"]);
                 yield return temp;

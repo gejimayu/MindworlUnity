@@ -151,7 +151,6 @@ public class CanvasController : MonoBehaviour
         }
         catch (WebException ex)
         {
-            Debug.Log("asu gagal");
             if (ex.Status == WebExceptionStatus.ProtocolError)
             {
                 var response = ex.Response as HttpWebResponse;
@@ -193,7 +192,7 @@ public class CanvasController : MonoBehaviour
             Profile deserializedResponse = JsonUtility.FromJson<Profile>(userinfoResponseText);
             string userEmail = deserializedResponse.email;
             //Debug.Log (userEmail);
-            PlayerPrefs.SetString("Email User", userEmail);
+            PlayerPrefs.SetString("UserEmail", userEmail);
         }
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
 
